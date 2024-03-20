@@ -7,9 +7,9 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { FaGithub, FaSpinner } from "react-icons/fa";
 
-interface LoginFormProps extends React.HTMLAttributes<HTMLFormElement> {}
+interface RegisFormProps extends React.HTMLAttributes<HTMLFormElement> {}
 
-const LoginForm = ({ className, ...props }: LoginFormProps) => {
+const RegisForm = ({ className, ...props }: RegisFormProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   async function onSubmit(event: React.SyntheticEvent) {
@@ -23,6 +23,18 @@ const LoginForm = ({ className, ...props }: LoginFormProps) => {
 
   return (
     <form onSubmit={onSubmit} className={cn("grid gap-6", className)} {...props}>
+      <article className="grid gap-1">
+        <Label htmlFor="name">Name</Label>
+        <Input
+          id="name"
+          placeholder="Enter your Name"
+          type="text"
+          autoCapitalize="none"
+          autoComplete="email"
+          autoCorrect="off"
+          disabled={isLoading}
+        />
+      </article>
       <article className="grid gap-1">
         <Label htmlFor="email">Email</Label>
         <Input
@@ -49,10 +61,10 @@ const LoginForm = ({ className, ...props }: LoginFormProps) => {
       </article>
       <Button disabled={isLoading}>
         {isLoading && <FaSpinner className="mr-2 h-4 w-4 animate-spin" />}
-        Login
+        Register
       </Button>
     </form>
   );
 };
 
-export default LoginForm;
+export default RegisForm;
