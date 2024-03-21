@@ -77,36 +77,6 @@ const links: SideLink[] = [
     href: "/settings",
     icon: RiSettingsLine,
   },
-  {
-    title: "Settings",
-    label: "",
-    href: "/settings",
-    icon: RiSettingsLine,
-  },
-  {
-    title: "Settings",
-    label: "",
-    href: "/settings",
-    icon: RiSettingsLine,
-  },
-  {
-    title: "Settings",
-    label: "",
-    href: "/settings",
-    icon: RiSettingsLine,
-  },
-  {
-    title: "Settings",
-    label: "",
-    href: "/settings",
-    icon: RiSettingsLine,
-  },
-  {
-    title: "Settings",
-    label: "",
-    href: "/settings",
-    icon: RiSettingsLine,
-  },
 ];
 
 const ArrowButtonSidebar = ({ isMinimize, handleMinimize }: { isMinimize: boolean; handleMinimize: () => void }) => {
@@ -118,13 +88,16 @@ const ArrowButtonSidebar = ({ isMinimize, handleMinimize }: { isMinimize: boolea
 };
 
 const LogoSidebar = ({ isMinimize }: { isMinimize: boolean }) => {
-  if (isMinimize) {
-    return <h1 className="text-xl font-semibold text-center px-5 py-10">C</h1>;
-  }
-
   return (
-    <div className={cn("px-5 py-10 ")}>
-      <h1 className="font-semibold text-xl">CMS</h1>
+    <div className={cn("text-xl border-b font-semibold text-center flex justify-center items-center px-5  py-10")}>
+      <h1 className="font-semibold text-xl text-center">CMS</h1>
+      <h1
+        className={cn("font-semibold text-xl ml-2", {
+          "invisible w-0 ml-0": isMinimize,
+        })}
+      >
+        Dasboard
+      </h1>
     </div>
   );
 };
@@ -159,9 +132,7 @@ const SideBar = () => {
                   <div
                     className={cn(
                       "p-5 border-b cursor-pointer flex items-center gap-2",
-                      {
-                        "border-t": index === 0,
-                      },
+
                       {
                         "py-5 px-0 justify-center": isMinimize,
                       }
@@ -181,7 +152,7 @@ const SideBar = () => {
                     </div>
                   </div>
                 </CollapsibleTrigger>
-                <CollapsibleContent className="space-y-2 pl-5">
+                <CollapsibleContent className="space-y-2 pl-5 collapsibleDropdown">
                   <div className=" px-4 py-3 font-mono text-sm border-l border-l-white hover:bg-slate-500">@radix-ui/colors</div>
                   <div className=" px-4 py-3 font-mono text-sm border-l border-l-white hover:bg-slate-500">@stitches/react</div>
                   <div className=" px-4 py-3 font-mono text-sm border-l border-l-white hover:bg-slate-500">@stitches/react</div>
@@ -198,15 +169,9 @@ const SideBar = () => {
             <Link
               href={navLink.href}
               key={index + 1}
-              className={cn(
-                "px-5 py-5 border-b  flex items-center gap-2",
-                {
-                  "border-t": index === 0,
-                },
-                {
-                  " px-0 justify-center": isMinimize,
-                }
-              )}
+              className={cn("px-5 py-5 border-b  flex items-center gap-2", {
+                " px-0 justify-center": isMinimize,
+              })}
             >
               <LinkIcon className="w-5 h-5" /> {!isMinimize && <h1>{navLink.title}</h1>}
             </Link>
